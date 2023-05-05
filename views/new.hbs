@@ -1,21 +1,21 @@
 <div class="container">
-    <div class="row">
-        <div class="col">*required</div>
-        <div class="col">Please enter your expenses</div>
+    <div class="card-body row justify-content-center">
+        <div class="card-title col-auto">*required</div>
+        <div class="card-title col-auto">Please enter your expenses</div>
     </div>
-    <div class="row">
-        <div class="col">Name＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
+    <div class="card-body row justify-content-center">
+        <div class="card-title col-auto">Name＊：</div>
+        <div class="card-title col-auto"><input type="text" class="form-control" placeholder="Username"
+                aria-label="Username" aria-describedby="name"></div>
     </div>
-    <div class="row">
-        <div class="col">Date＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
+    <div class="card-body row justify-content-center">
+        <div class="card-title col-auto">Date＊：</div>
+        <div class="card-title col-auto"><input type="text" class="form-control" placeholder="Username"
+                aria-label="Username" aria-describedby="date"></div>
     </div>
-    <div class="row">
-        <div class="col">Category＊：</div>
-        <div class="col"><select class="form-select" aria-label="Default select example">
+    <div class="row card-body justify-content-center">
+        <div class="card-title col-auto">Category＊：</div>
+        <div class="card-title col-auto"><select class="form-select" aria-label="category" style="width: 150%;">
                 <option selected>Select</option>
                 <option value="house">家居物業</option>
                 <option value="traffic">交通出行</option>
@@ -25,12 +25,13 @@
             </select>
         </div>
     </div>
-    <div class="row">
-        <div class="col">The amount＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
+    <div class="card-body row justify-content-center">
+        <div class="card-title col-auto">The amount＊：</div>
+        <div class="card-title col-auto"><input type="text" class="form-control" placeholder="amount"
+                aria-label="amount" aria-describedby="amount"></div>
     </div>
-    <div class="card-footer">
-        <button class="btn btn-primary" type="submit">New expenses</button>
+    <div class="card-footer text-center mt-5">
+        <a class="btn btn-danger" href="/">Back</a>
+        <button class="btn btn-outline-secondary" type="submit">新增支出</button>
     </div>
 </div>

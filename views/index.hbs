@@ -1,7 +1,7 @@
 <body>
-    <div class="container mt-5">
+    {{!-- <div class="container mt-5"> --}}
         <div class="row justify-content-center">
-            <div class="col-8 select group">
+            <div class="col-8 select group mt-5">
                 <select class="form-select" aria-label="Category">
                     <option selected>Category</option>
                     <option value="1">家居物業</option>
@@ -21,128 +21,43 @@
                 </label>
             </div>
         </div>
-        <!-- Content -->
-        <ul>
-            <div class="card-body row justify-content-center mb-3">
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary" href="/expense/edit">Edit</a>
-                </div>
-                <div class="col-auto">
-                    <form action="/expense/DELETE" method="POST" style="display:inline">
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-            <!-- chunk -->
-            <div class="card-body row justify-content-center mb-3">
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary" href="/expense/edit">Edit</a>
-                </div>
-                <div class="col-auto">
-                    <form action="/expense/DELETE" method="POST" style="display:inline">
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
+
+        <!--總列表-->
+
+        <div class="row justify-content-center" style="align-items:center">
+            {{#each data}}
+            <div class="card-body d-inline-flex justify-content-center" style="padding-left: 0px;padding-right: 100px;">
+                <div class="col-6 row p-3 ">
+                    <div class="col-2 d-flex" style="align-items:center">
+                        {{this.icon}}
+                    </div>
+                    <div class="col-5" style=" ">
+                        <h5 class=" m-0">{{this.name}}</h5>
+                        <p class="m-0">{{this.date}}</p>
+                    </div>
+                    <div class="col-3 d-inline-flex" style="align-items:center; justify-content:flex-start">
+                        {{this.amount}}
+                    </div>
+                    <div class="col-2 d-inline-flex">
+                        <div class="col-4 d-flex" style="align-items:center">
+                            <a class="btn btn-light" href="/expense/edit">Edit</a>
+                            <form action="/" method="POST" style="align-items:center" class="col d-flex">
+                                <button class="btn btn-light" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- chunk -->
-            <div class="card-body row justify-content-center mb-3">
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary" href="/expense/edit">Edit</a>
-                </div>
-                <div class="col-auto">
-                    <form action="/expense/DELETE" method="POST" style="display:inline">
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                </div>
+            {{/each}}
+        </div>
+
+        <!--新增支出-->
+        <div class="row">
+            <div class="text-center" style="margin-right:10px; ">
+                <a href="/expense/new" class="col-xs-6 col-sm-2 btn btn-outline-light"
+                    style="background-color:#db6c3d;">新增支出</a>
             </div>
-            <!-- chunk -->
-            <div class="card-body row justify-content-center mb-3">
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary" href="/expense/edit">Edit</a>
-                </div>
-                <div class="col-auto">
-                    <form action="/expense/DELETE" method="POST" style="display:inline">
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-            <!-- chunk -->
-            <div class="card-body row justify-content-center mb-3">
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto ">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="card-title col-auto">
-                    test
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-light" href="/expense/edit">Edit</a>
-                </div>
-                <div class="col-auto">
-                    <form action="/expense/DELETE" method="POST" style="display:inline">
-                        <button class="btn btn-light" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="text-center" style="margin-right:10px; ">
-                    <a href="/expense/new" class="col-xs-6 col-sm-2 btn btn-outline-light"
-                        style="background-color:#db6c3d;">新增支出</a>
-                </div>
-            </div>
-        </ul>
-    </div>
+        </div>
+        {{!--
+    </div> --}}
 </body>
