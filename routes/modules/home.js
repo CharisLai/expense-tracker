@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const data = require('../../models/seeds/record.json')
-const Expense = require('../../models/expense')
+const Expense = require('../../models/record')
 
 router.get('/', (req, res) => {
     //取得所有資料

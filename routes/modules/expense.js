@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Expense = require('../../models/expense')
+const Expense = require('../../models/record')
 
 // Create - GET
 router.get('/new', (req, res) => {
@@ -12,12 +12,11 @@ router.post('/', (req, res) => {
     return Expense.create({ ...req.body })
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
-
 });
 
-router.post('/new', (req, res) => {
-    res.render('new')
-});
+// router.post('/new', (req, res) => {
+//     res.render('new')
+// });
 
 // router.post('/edit', (req, res) => {
 //     Expense.create(req.body)

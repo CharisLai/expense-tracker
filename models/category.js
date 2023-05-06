@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const categorySchema = new Schema({
-    id: {
-        type: Number,
+    icon: {
+        type: String,
         required: true
     },
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 })
 module.exports = mongoose.model('Category', categorySchema)
