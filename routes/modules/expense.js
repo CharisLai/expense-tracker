@@ -14,17 +14,30 @@ router.post('/', (req, res) => {
         .catch(error => console.log(error))
 });
 
-// router.post('/new', (req, res) => {
-//     res.render('new')
-// });
+// Edit - GET
+router.get('/:id/edit', (req, res) => {
+    const _id = req.params.id
+    return Expense.findById(_id)
+        .lean()
+        .then(modify => res.render('edit', { modify }))
+        .catch(error => console.log(error))
+});
+// Edit - PUT
+router.put('/:id', (req, res) => {
+    const _id = req.params.id
+    Expense.findByIdAndUpdate(_id, req.body)
+        .lean()
+        .then(() => res.redirect('/'))
+        .catch(error => console.error(error))
+});
 
-// router.post('/edit', (req, res) => {
-//     Expense.create(req.body)
-//         .then(() => res.redirect('/'))
-//         .catch(error => console.log(error))
-//     console.log(req.body)
-// });
-
-
+// Edit - POST
+router.delete('/:id', (req, res) => {
+    const _id = req.params.id
+    Expense.findById(_id)
+        .then(expense => expense.remove())
+        .then(() => res.redirect('/'))
+        .catch(error => console.error(error))
+});
 
 module.exports = router
