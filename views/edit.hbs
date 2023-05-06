@@ -1,35 +1,51 @@
-<div class="card-column container">
-    <div class="row mt-5">
-        <div class="col">*必填欄位</div>
-        <div class="col">請輸入你的支出</div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">Name＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">Date＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">Category＊：</div>
-        <div class="col"><select class="form-select" aria-label="Default select example">
-                <option selected>Select</option>
-                <option value="house">家居物業</option>
-                <option value="traffic">交通出行</option>
-                <option value="recreation">休閒娛樂</option>
-                <option value="catering food">餐飲食品</option>
-                <option value="other">其他</option>
-            </select></div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">The amount＊：</div>
-        <div class="col"><input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1"></div>
-    </div>
-    <div class="cord-footer text-center mt-5">
-        <button class="btn btn-primary">Submit</button>
-    </div>
+<div class="container card col-5 mt-4">
+    <form action="" method="">
+        <div class="card-head row justify-content-center">
+            <span class="card-title col-auto">*required</span>
+            <h5 class="card-title col-6">Please enter your expenses</h5>
+        </div>
+        <div class="card-body row justify-content-center">
+            <label for="name" class="form-label col-auto">
+                <h4>名稱＊：</h4>
+            </label>
+            <div class="card-title col-6"><input type="text" class="form-control" placeholder="Username"
+                    aria-label="Username" aria-describedby="name"></div>
+        </div>
+        <div class="card-body row justify-content-center">
+            <label for="date" class="form-label col-auto">
+                <h4>日期＊：</h4>
+            </label>
+            <div class="card-title col-6"><input type="text" class="form-control" placeholder="Username"
+                    aria-label="Username" aria-describedby="date"></div>
+        </div>
+        <div class="card-body row justify-content-center">
+            <label for="category" class="form-label col-auto">
+                <h4>類別＊：</h4>
+            </label>
+            <div class="col-6">
+                <select class="form-select justify-content-center" aria-label="category" style="width: 100%;">
+                    <option selected>Select</option>
+                    <option value="house">家居物業</option>
+                    <option value="traffic">交通出行</option>
+                    <option value="recreation">休閒娛樂</option>
+                    <option value="catering food">餐飲食品</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="card-body row justify-content-center">
+            <label for="amount" class="form-label col-auto ">
+                <h4>金額＊：</h4>
+            </label>
+            <div class="card-title col-6"><input type="text" class="form-control" placeholder="amount"
+                    aria-label="amount" aria-describedby="amount"></div>
+        </div>
+        <div class="card-body row justify-content-center" style="align-items:center;">
+            <div class="col-auto"></div>
+            <div class="text-center col-6">
+                <button class="btn btn-outline-secondary " style="width:100%; align-items:center;"
+                    type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
 </div>
