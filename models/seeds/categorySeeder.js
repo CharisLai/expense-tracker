@@ -1,19 +1,16 @@
-const mongoose = require('mongoose')
+const db = require('../../config/mongoose')
 const Category = require('../category')
-const categoryList = require('./category.json').results
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
-// connect MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
+const category = [
+    { name: "家居物業", icon: '<i class="fa-solid fa-house"></i>' },
+    { name: "交通出行", icon: '<i class="fa-solid fa-van-shuttle"></i>' },
+    { name: "休閒娛樂", icon: '<i class="fa-solid fa-face-grin-beam"></i>' },
+    { name: "餐飲食品", icon: '<i class="fa-solid fa-utensils"></i>' },
+    { name: "其他", icon: '<i class="fa-solid fa-pen"></i>' },
+]
 
 //mongodb connection status
-db.on('error', () => {
-    console.log('mongodb error!')
-})
 db.once('open', () => {
-    Category.create(categoryList)
+    Category.create(category)
         .then(() => {
             console.log('Categories have been created.')
             db.close()

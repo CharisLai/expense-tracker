@@ -18,9 +18,10 @@ db.on('error', () => {
 })
 db.once('open', async () => {
     try {
+        const categoryList = await Category.find().lean()
         console.log('MongoDB is working.')
         // record中的 CategoryId 轉換為 MongoDB_id
-        const categoryList = await Category.find().lean()
+
         recordSeed.forEach(item => {
             item.categoryId = categoryList.find(element => element.name === item.categoryId)
         })
