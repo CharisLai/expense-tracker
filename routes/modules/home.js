@@ -1,16 +1,21 @@
 const express = require('express')
 const router = express.Router()
-const data = require('../../models/seeds/record.json')
-const Expense = require('../../models/record')
+const Record = require('../../models/record')
+const Category = require('../../models/category')
 
-router.get('/', (req, res) => {
-    //取得所有資料
-    // res.render('index', { data: data.results })
-    Expense.find()
-        .lean()
-        .then(data => res.render('index', { data }))
-        .catch(error => console.log(error))
+router.get('/', async (req, res) => {
+    try {
+        const userId = req.user._id
+        const records = await Record.find({ userId }).lean()
 
+        let totalAmount = 0
+        for (const record of records) {
+            totalAmount += Number(record.amount)
+        }
+        res.render('index', { records, totalAmount })
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 module.exports = router
