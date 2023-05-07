@@ -21,9 +21,9 @@
         <!-- Total -->
         <div class="card-body">
             <div class="row justify-content-center mt-4">
-                <label for="totalAmount" class="col-sm-5 col-form-label" style="margin-right: 20%;">總金額：
+                <label for="totalAmount" class="col-sm-5 col-form-label text-center" style="margin-right: 20%;">總金額：
                     <h1 for="totalAmount" class="col-sm-2 col-form-label"
-                        style="margin-left: 60%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount">
+                        style="margin-left: 70%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount">
                         {{totalAmount}}
                     </h1>
                 </label>
@@ -40,10 +40,11 @@
                         <i class="{{{this.icon}}} fa-2x"></i>
                     </div>
                     <div class="col-5">
-                        <h5 class=" m-0">{{this.name}}</h5>
-                        <p class="m-0">{{this.date}}</p>
+                        <h5 class=" m-0" type="name">{{this.name}}</h5>
+                        <p class="m-0" type="date">{{this.date}}</p>
                     </div>
-                    <div class="col-3 d-inline-flex" style="align-items:center; justify-content:flex-start">
+                    <div class="col-3 d-inline-flex" style="align-items:center; justify-content:flex-start"
+                        type="amount">
                         {{this.amount}}
                     </div>
                     <div class="col-2 d-inline-flex">
