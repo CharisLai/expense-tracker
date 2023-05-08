@@ -1,17 +1,15 @@
 const express = require('express')
-const bcrypt = require('bcryptjs')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
-const session = require('express-session')
-const usePassport = require('./config/passport')
-const routes = require('./routes')
 
+const routes = require('./routes')
 require('./config/mongoose')
+const usePassport = require('./config/passport')
 const app = express()
 const PORT = process.env.PORT || 3000
-
 
 
 //express-handlebars
@@ -44,8 +42,8 @@ app.use((req, res, next) => {
     next()
 })
 
+// router
 app.use(routes)
-
 
 app.listen(PORT, () => {
     console.log(`App is running on http://localhost:${PORT}`)

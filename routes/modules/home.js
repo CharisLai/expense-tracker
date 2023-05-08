@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const totalCalculate = require('../../utils/totalCalculate')
 
 router.get('/', async (req, res) => {
     try {
@@ -11,12 +11,11 @@ router.get('/', async (req, res) => {
             .populate('categoryId')
             .lean()
 
-        const totalAmount = await Record.aggregate([
-            { $match: { userId } },
-            { $group: { _id: null, total: { $sum: '$amount' } } }
-        ])
-        // console.log(totalAmount)
-        res.render('index', { records: findRecords, categories, totalAmount: totalAmount[0].total })
+        let totalAmount = 0
+        totalAmount = totalCalculate(findRecords)
+
+        res.render('index', { records: findRecords, categories, totalAmount: totalAmount })
+
     } catch (error) {
         console.log(error)
     }

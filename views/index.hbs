@@ -3,18 +3,17 @@
         <div class="row justify-content-center">
             <div class="col-8 select group mt-5">
                 <div class="dropdown d-flex justify-content-center ">
-                    <a class="btn btn-outline-primary dropdown-toggle" style="width: 50%" href="/" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        類別
-                    </a>
-                    <ul class="dropdown-menu text-center" style="width: 50%">
-                        <li><a class="dropdown-item" href="/">全部</a></li>
-                        <li><a class="dropdown-item" href="/category/家居物業">家居物業</a></li>
-                        <li><a class="dropdown-item" href="/category/交通出行">交通出行</a></li>
-                        <li><a class="dropdown-item" href="/category/休閒娛樂 ">休閒娛樂</a></li>
-                        <li><a class="dropdown-item" href="/category/餐飲食品">餐飲食品</a></li>
-                        <li><a class="dropdown-item" href="/category/其他">其他</a></li>
-                    </ul>
+                    <form action="/filter" style="width: 50%;">
+                        <select class="form-select justify-content-center" aria-label="category" name="categoryId"
+                            id="category" required>
+                            <option selected>Select</option>
+                            {{#each categories}}
+                            <option value='{{this._id}}' {{#match this.selectedCategoryId this._id }}{{/match}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </form>
                 </div>
             </div>
         </div>
@@ -23,7 +22,8 @@
             <div class="row justify-content-center mt-4">
                 <label for="totalAmount" class="col-sm-5 col-form-label text-center" style="margin-right: 20%;">總金額：
                     <h1 for="totalAmount" class="col-sm-2 col-form-label"
-                        style="margin-left: 70%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount">
+                        style="margin-left: 70%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount"
+                        type="number" min="0">
                         {{totalAmount}}
                     </h1>
                 </label>
@@ -37,7 +37,7 @@
             <div class="card-body d-inline-flex justify-content-center" style="padding-left: 0px;padding-right: 100px;">
                 <div class="col-6 row p-3 ">
                     <div class="col-2 d-flex" style="align-items:center">
-                        <i class="{{{this.icon}}} fa-2x"></i>
+                        <h2><i class="{{this.categoryId.icon}}"></i></h2>
                     </div>
                     <div class="col-5">
                         <h5 class=" m-0" type="name">{{this.name}}</h5>
