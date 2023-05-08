@@ -1,7 +1,7 @@
 <div class="container card col-5 mt-4">
     <div class="card-head row justify-content-center">
         <span class="card-title col-auto">*required</span>
-        <h5 class="card-title col-7">Please enter your expenses</h5>
+        <h5 class="card-title col-7">請輸入你的支出</h5>
     </div>
     <form class="text-center" action="/expense" method="POST">
         <div class="card-body row justify-content-center">
@@ -30,11 +30,10 @@
                 <select class="form-select justify-content-center" aria-label="category" style="width: 100%;"
                     name="categoryId" id="category" required>
                     <option selected>Select</option>
-                    <option value="家居物業">家居物業</option>
-                    <option value="交通出行">交通出行</option>
-                    <option value="休閒娛樂">休閒娛樂</option>
-                    <option value="餐飲食品">餐飲食品</option>
-                    <option value="其他">其他</option>
+                    {{#each categories}}
+                    <option value='{{this._id}}' {{#match this.selectedCategoryId this._id }}{{/match}}>{{this.name}}
+                    </option>
+                    {{/each}}
                 </select>
             </div>
         </div>

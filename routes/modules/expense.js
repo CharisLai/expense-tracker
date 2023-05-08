@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+// const filter = require('../modules')
 // Create - GET
 router.get('/new', async (req, res) => {
     const categories = await Category.find({}).lean()
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
         const recordData = Object.assign({ userId }, req.body)
 
         await Record.create(recordData)
-        res.render('/')
+        res.redirect('/')
     } catch (error) {
         console.log(error)
     }
