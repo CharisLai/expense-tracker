@@ -1,8 +1,7 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-// const filter = require('../modules')
+
 // Create - GET
 router.get('/new', async (req, res) => {
     const categories = await Category.find({}).lean()
@@ -22,32 +21,46 @@ router.post('/', async (req, res) => {
 })
 
 // Edit - GET
-router.get('/:id/edit', (req, res) => {
-    const userId = req.user._id
-    const _id = req.params.id
-    return Expense.findById({ _id, userId })
-        .lean()
-        .then(modify => res.render('edit', { modify }))
-        .catch(error => console.log(error))
-});
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const userId = req.user._id
+        const _id = req.params.id
+        const modifyRecord = await Record.findOne({ _id, userId }).populate('categoryId').lean()
+        const categoryName = await modifyRecord.categoryId.name
+        const categories = await Category.find({}).lean()
+        res.render('edit', { modifyRecord, categoryName, categories })
+    } catch (error) {
+        console.log(error)
+    }
+})
 // Edit - PUT
-router.put('/:id', (req, res) => {
-    const userId = req.user._id
-    const _id = req.params.id
-    Expense.findByIdAndUpdate({ _id, userId })
-        .lean()
-        .then(() => res.redirect('/'))
-        .catch(error => console.error(error))
-});
+router.put('/:id', async (req, res) => {
+    try {
+        const userId = req.user._id
+        const _id = req.params.id
+
+        let modifyRecord = await Record.findOne({ _id, userId })
+        modifyRecord = Object.assign(modifyRecord, req.body)
+
+        await modifyRecord.save()
+        req.flash
+        res.redirect('/')
+    } catch (err) {
+        console.log(error)
+    }
+})
 
 // Delete - POST
-router.delete('/:id', (req, res) => {
-    const userId = req.user._id
-    const _id = req.params.id
-    Expense.findById({ _id, userId })
-        .then(expense => expense.remove())
-        .then(() => res.redirect('/'))
-        .catch(error => console.error(error))
-});
+router.delete('/:id', async (req, res) => {
+    try {
+        const userId = req.user._id
+        const _id = req.params.id
+        const record = await Record.findOne({ _id, userId })
+        await record.remove()
+        res.redirect('/')
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 module.exports = router

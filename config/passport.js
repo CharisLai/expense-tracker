@@ -13,15 +13,18 @@ module.exports = app => {
         (req, email, password, done) => {
             User.findOne({ email })
                 .then(user => {
+                    // 確認email
                     if (!user) {
                         return done(null, false, req.flash('fail_msg', 'That email is not registered!'))
                     }
-                    return bcrypt.compare(password, user.password).then(isMatch => {
-                        if (!isMatch) {
-                            return done(null, false, req.flash('fail_msg', 'Email or Password incorrect.'))
-                        }
-                        return done(null, user)
-                    })
+                    return bcrypt.compare(password, user.password)
+                        // 檢查密碼與email
+                        .then(isMatch => {
+                            if (!isMatch) {
+                                return done(null, false, req.flash('fail_msg', 'Email or Password incorrect.'))
+                            }
+                            return done(null, user)
+                        })
                 })
                 .catch(error => done(error, false))
         }))
