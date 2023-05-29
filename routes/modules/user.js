@@ -2,6 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const User = require('../../models/user')
+const { userValidator } = require('../../middleware/validator')
 
 // Login
 router.get('/login', (req, res) => {
@@ -32,7 +33,7 @@ router.post('/register', async (req, res) => {
         errors.push({ message: 'Password and confirmation password do not match！' })
     }
     if (errors.length) {
-        return res.render('register', {
+        return res.redirect('register', {
             errors,
             name,
             email,
