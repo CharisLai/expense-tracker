@@ -3,12 +3,12 @@
     "name": "廣志",
     "email": "user1@example.com",
     "password": "12345678",
-    "index": [0, 1, 2]
+    "index": [0, 1, 2, 5]
 },
 {
     "name": "小新",
     "email": "user2@example.com",
     "password": "12345678",
-    "index": [3]
+    "index": [3, 4]
 }
 ]}
