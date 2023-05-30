@@ -28,6 +28,7 @@ router.get('/:id/edit', async (req, res) => {
         const modifyRecord = await Record.findOne({ _id, userId }).populate('categoryId').lean()
         const categoryName = await modifyRecord.categoryId.name
         const categories = await Category.find({}).lean()
+        modifyRecord.date = modifyRecord.date.toISOString().slice(0, 10)
         res.render('edit', { modifyRecord, categoryName, categories })
     } catch (error) {
         console.log(error)
@@ -43,7 +44,6 @@ router.put('/:id', async (req, res) => {
         modifyRecord = Object.assign(modifyRecord, req.body)
 
         await modifyRecord.save()
-        req.flash
         res.redirect('/')
     } catch (err) {
         console.log(error)

@@ -28,14 +28,14 @@ db.once('open', async () => {
                     const userRecords = userIndex.map(index => {
 
                         const record = recordSeed[index]
-
+                        console.log(recordSeed)
                         record.userId = userData.id
                         // category的name = record的category 
                         const categoryId = categoryList.find(data => {
                             return data.name === record.category
                         })
                         // 依照上行關係調出對應的id
-                        record.categoryId = categoryId._id
+                        record.categoryId = categoryId
 
                         return record
                     })
