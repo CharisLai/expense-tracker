@@ -7,13 +7,14 @@ const flash = require('connect-flash')
 const routes = require('./routes')
 require('./config/mongoose')
 const usePassport = require('./config/passport')
+const helpers = require('./helper/handlebars-helper')
 const app = express()
 const PORT = process.env.PORT || 3000
 
 
 //express-handlebars
 app.engine('hbs', exphbs.engine({
-    defaultLayout: 'main', extname: '.hbs', helpers: require('./helper/handlebars-helper')
+    defaultLayout: 'main', extname: '.hbs', helpers
 }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
