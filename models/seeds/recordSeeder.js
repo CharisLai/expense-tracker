@@ -36,12 +36,9 @@ db.once('open', async () => {
                         })
                         // 依照上行關係調出對應的id
                         record.categoryId = categoryId
-
                         return record
                     })
-
                     await Record.create(userRecords)
-
                 }
                 catch (err) {
                     console.log(err)

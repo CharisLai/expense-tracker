@@ -1,11 +1,10 @@
 <body>
     <div class="row justify-content-center">
         <div class="col-8 select group mt-5">
-            <div class="dropdown d-flex justify-content-center ">
+            <div class="dropdown d-flex justify-content-center">
                 <form style="width: 50%;" action="/" method="POST">
-                    <select class="form-select justify-content-center" aria-label="categoryId" name="categoryId"
-                        id="categoryId" onchange="this.form.submit()" required>
-                        <option selected>類別</option>
+                    <select class="form-select justify-content-center" aria-label="category" name="category"
+                        id="category" onchange="this.form.submit()" required>
                         <option value="all">全部</option>
                         {{#each categories}}
                         <option value="{{this._id}}">
@@ -20,7 +19,7 @@
 
     <!-- Total -->
     <div class="card-body">
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-3">
             <label for="totalAmount" class="col-sm-5 col-form-label text-center" style="margin-right: 20%;">總金額：
                 <h1 for="totalAmount" class="col-sm-2 col-form-label"
                     style="margin-left: 70%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount"
@@ -32,38 +31,41 @@
     </div>
 
     <!--總列表-->
-
-    <div class="row justify-content-center" style="align-items:center">
-        {{#each records}}
-        <div class="card-body d-inline-flex justify-content-center"
-            style="padding-right: 100px;background-color: silver;  border: 1px solid rgb(255, 255, 255); padding: 10px;">
-            <div class="col-6 row p-2">
-                <div class="col-2 d-flex" style="justify-content: center; align-items:center">
-                    <h2><i class="{{this.categoryId.icon}}"></i></h2>
-                </div>
-                <div class="col-5">
-                    <h5 class=" m-0" type="name" value="{{this.name}}">{{this.name}}</h5>
-                    <p class="m-0" type="date" value="{{this.date}}">{{this.date}}</p>
-                </div>
-                <div class="col-3 d-inline-flex" style="align-items:center; justify-content:flex-start" type="amount">
-                    {{this.amount}}
-                </div>
-                <div class="col-2 d-inline-flex">
-                    <div class="col d-flex" style="align-items:center">
-                        <a class="btn btn-info" href="/expense/{{this._id}}/edit">Edit</a>
-                        <form action="/expense/{{this._id}}?_method=DELETE" method="POST" style="align-items:center">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
+    <div class="row justify-content-center">
+        <table class="table table-striped" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th scope="col">類別</th>
+                    <th scope="col">名稱</th>
+                    <th scope="col">日期</th>
+                    <th scope="col">金額</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each records}}
+                <tr>
+                    <td><i class="{{this.categoryId.icon}}"></i></td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.amount}}</td>
+                    <td>
+                        <div class="button-group">
+                            <a class="btn btn-info" href="/expense/{{this._id}}/edit">Edit</a>
+                            <form action="/expense/{{this._id}}?_method=DELETE" method="POST">
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
 
     <!--新增支出-->
     <div class="row">
-        <div class="text-center" style="margin-right:10px; ">
+        <div class="text-center" style="margin-right:10px;">
             <a href="/expense/new" class="col-xs-6 col-sm-2 btn btn-outline-light"
                 style="background-color:#db6c3d;">新增支出</a>
         </div>

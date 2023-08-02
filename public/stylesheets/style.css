@@ -1,0 +1,17 @@
+
+  
+  table.table-striped tbody tr:nth-child(even) {
+    background-color: #b9d5f0; /* 偶數行背景顏色 */
+  }
+  
+  table.table-striped tbody tr:nth-child(odd) {
+    background-color: #f3f3f3; /* 奇數行背景顏色 */
+  }
+  .button-group {
+    display: flex;
+  }
+  
+  .button-group > * {
+    margin-right: 5px;
+  }
+  
