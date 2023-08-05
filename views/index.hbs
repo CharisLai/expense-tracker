@@ -2,10 +2,12 @@
     <div class="row justify-content-center">
         <div class="col-8 select group mt-5">
             <div class="dropdown d-flex justify-content-center">
-                <form style="width: 50%;" action="/" method="POST">
+
+                {{!--selected --}}
+                <form style="width: 50%;" action="/filter" method="GET">
                     <select class="form-select justify-content-center" aria-label="category" name="category"
-                        id="category" onchange="this.form.submit()" required>
-                        <option value="all">全部</option>
+                        id="category" onchange="this.form.submit()">
+                        <option value="all" selected>全部</option>
                         {{#each categories}}
                         <option value="{{this._id}}">
                             {{this.name}}
@@ -13,6 +15,7 @@
                         {{/each}}
                     </select>
                 </form>
+
             </div>
         </div>
     </div>

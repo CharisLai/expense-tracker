@@ -2,18 +2,23 @@ const router = require('express').Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
+
 router.get('/', async (req, res) => {
-    const userId = req.user._id
     try {
-
+        // 使用者Id
+        const userId = req.user._id
+        // 總額歸零
         let totalAmount = 0
-        let findRecords = await Record.find({ userId })
-            .sort({ date: 'desc' })
-            .populate('categoryId')
+        // 找出符合userId的所有記錄
+        let Records = await Record.find({ userId })
             .lean()
+            .sort({ date: 'desc' })
+            .populate('categoryId') // icon
 
-        const categories = await Category.find().lean().sort({ _id: 'asc' })
-        const records = findRecords.map((record) => {
+        // cate for selector
+        const categories = await Category.find({}).lean()
+
+        const records = Records.map((record) => {
             totalAmount += record.amount
             record.date = record.date.toISOString().slice(0, 10)
             return record
@@ -26,30 +31,36 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', (req, res) => {
-    const userId = req.user._id
-    const { categoryId } = req.body
-    if (categoryId === 'all') {
-        return res.redirect('/')
+router.get('/filter', async (req, res) => {
+
+    try {
+        // 使用者Id
+        const userId = req.user._id
+        // 總額歸零
+        let totalAmount = 0
+
+        // filter
+        let selectedCategory = req.query.category
+
+        // 查找category
+        const categoryId = await Category.findOne({ _id: selectedCategory }).lean()
+        // 依照userId cate查找record
+        const record = await Record.find({ userId, categoryId }).lean().populate('categoryId')
+        const data = await Promise.all(record.map(async record => {
+            // 計算額度
+            totalAmount += record.amount
+            return {
+                ...record,
+                date: record.date.toISOString().slice(0, 10)
+            }
+        }))
+        // cate for selector
+        const categories = await Category.find({}).lean()
+
+        res.render('index', { records: data, categories, totalAmount })
+    } catch (err) {
+        console.log(err)
     }
-    return Category.find()
-        .lean()
-        .then((categories) => {
-            return Record.find({ userId, categoryId })
-                .populate('categoryId')
-                .lean()
-                .sort({ date: 'desc' })
-                .then((records) => {
-                    let totalAmount = 0
-                    records.forEach((record) => {
-                        totalAmount += record.amount
-                        record.date = record.date.toISOString().slice(0, 10)
-                    })
-                    return res.render('index', { records, categories, totalAmount })
-                })
-                .catch(error => console.log(error))
-        })
-        .catch(error => console.log(error))
 })
 
 module.exports = router
