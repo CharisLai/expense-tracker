@@ -26,10 +26,10 @@ router.post('/', [
         .withMessage('最小數值1，最多九位數')
 ], async (req, res) => {
     // 檢查驗證結果
-    const errors = validationResult(req);
+    const errors = validationResult(req)
     if (!errors.isEmpty()) {
         // 如果有錯誤，回傳錯誤訊息
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array() })
     }
     try {
         const userId = req.user._id

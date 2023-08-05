@@ -21,15 +21,11 @@ router.get('/', async (req, res) => {
         const records = Records.map((record) => {
             totalAmount += record.amount
             record.date = record.date.toISOString().slice(0, 10)
-            categoriesSet.add(record.categoryId) // 將類別加入 Set 中
             return record
         })
 
-        const categories = await Category.find({ _id: { $in: Array.from(categoriesSet) } }) // 將 Set 轉換回陣列
-            .lean()
-            .sort({ _id: 'asc' })
-
         res.render('index', { records, categories, totalAmount })
+
     } catch (error) {
         console.log(error)
     }
