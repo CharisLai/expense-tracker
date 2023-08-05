@@ -13,8 +13,8 @@ router.get('/new', async (req, res) => {
 router.post('/', [
     check('name')
         .trim()
-        .isLength({ min: 1, max: 8 })
-        .withMessage('必填，最多八字元！'),
+        .isLength({ min: 1, max: 10 })
+        .withMessage('必填，最多10字元！'),
     check('date')
         .isISO8601()
         .isAfter('2023-01-01')
@@ -47,7 +47,7 @@ router.get('/:id/edit', async (req, res) => {
     try {
         const userId = req.user._id
         const _id = req.params.id
-        const modifyRecord = await Record.findOne({ _id, userId }).populate('categoryId').lean()
+        const modifyRecord = await Record.findOne({ _id, userId }).lean().populate('categoryId')
         const categoryName = await modifyRecord.categoryId.name
         const categories = await Category.find({}).lean()
         modifyRecord.date = modifyRecord.date.toISOString().slice(0, 10)
@@ -73,13 +73,12 @@ router.put('/:id', async (req, res) => {
 })
 
 // Delete - POST
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
     try {
         const userId = req.user._id
         const _id = req.params.id
-        const record = await Record.findOne({ _id, userId })
-        await record.remove()
-        res.redirect('/')
+        return Record.findOneAndDelete({ _id, userId })
+            .then(() => res.redirect('/'))
     } catch (error) {
         console.error(error)
     }

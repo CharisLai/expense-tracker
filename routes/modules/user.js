@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
         errors.push({ message: 'Password and confirmation password do not match！' })
     }
     if (errors.length) {
-        return res.redirect('register', {
+        return res.render('register', {
             errors,
             name,
             email,
