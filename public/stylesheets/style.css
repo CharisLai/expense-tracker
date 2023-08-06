@@ -6,13 +6,23 @@
 body {
   background-size: cover;
   background-position: center;
-  margin: 0 auto;
-  padding: 0px;
+  /* margin: 0 auto;
+  padding: 0px; */
 
   min-width: 340px;
   min-height: fit-content;
   max-height: fit-content;
   font-family: Arial, Helvetica, sans-serif;
+
+  @media (min-width: 320px) {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+  @media (min-width: 1024px) {
+    width: 100%;
+  }
 }
 
 
@@ -26,18 +36,20 @@ body {
 }
 
 .container {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 350px) {
+  width: 100%;
+  
+  @media (min-width: 380px) {
     flex-direction: row;
+    width: 100%;
   }
   @media (min-width: 768px) {
-    flex-direction: row;
+
+    width: 100%;
   }
   @media (min-width: 1024px) {
-    width: 33.33%;
+    width: 50%;
   }
 }
 
@@ -45,6 +57,16 @@ table {
   background-color: white;
   max-width: fit-content;
   min-width: min-content;
+  @media (min-width: 320px) {
+
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
 }
   table.table-striped tbody tr:nth-child(even) {
     background-color: #b9d5f0; /* 偶數行背景顏色 */
@@ -60,6 +82,8 @@ table {
   background-color: #edf37269;
   text-align:center;
   width: 100%;
+
+  
 }
   .button-group > * {
     margin: 0 auto;
@@ -77,15 +101,15 @@ table {
   border-collapse: collapse;
   width: 40%;
   min-width: 30ch;
-  @media (min-width: 350px) {
+  @media (min-width: 320px) {
     margin: 0 auto;
-    width: 20px;
+    width: 100px;
   }
   @media (min-width: 768px) {
-    width: 50%;
+    width: 100%;
   }
   @media (min-width: 1024px) {
-    width: 33.33%;
+    width: 33.3%;
   }
 }
 
