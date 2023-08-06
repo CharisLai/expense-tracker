@@ -10,21 +10,12 @@ const validator = [
         .isLength({ min: 1, max: 10 })
         .withMessage('必填，最多10字元！'),
     check('email')
-        .isEmail()
-        .withMessage('請填入正確email'),
+        .isEmail(),
     check('password')
         .isString()
         .isLength({ min: 6 })
-        .withMessage('密碼最少6位數'),
-    check('confirmPassword')
-        .custom((value, { req }) => {
-            if (value !== req.body.password) {
-                throw new Error('password do not match')
-            }
-            return true
-        })
+        .withMessage('密碼最少6位數')
 ]
-
 // Login
 router.get('/login', (req, res) => {
     res.render('login')
@@ -48,14 +39,15 @@ router.get('/register', (req, res) => {
     res.render('register')
 })
 router.post('/register', validator, async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
+    const { name, email, password, confirmPassword } = req.body
+    const errors = []
+
+    const error = validationResult(req)
+    if (!error.isEmpty()) {
         // 如果有錯誤，回傳錯誤訊息
-        return res.status(400).json({ errors: errors.array() })
+        return res.status(400).json({ error: error.array() })
     }
 
-    const { name, email, password, confirmPassword } = req.body
-    // const errors = []
     if (password !== confirmPassword) {
         errors.push({ message: 'Password and confirmation password do not match！' })
     }
@@ -91,7 +83,6 @@ router.post('/register', validator, async (req, res) => {
         })
     } catch (error) {
         console.error(error)
-        res.status(500).send('伺服器錯誤')
     }
 })
 // Logout
