@@ -25,20 +25,21 @@
     </div>
 
     <!-- Total -->
-    <div class="card-body">
-        <div class="row justify-content-center mt-3">
-            <label for="totalAmount" class="col-sm-5 col-form-label text-center" style="margin-right: 20%;">總金額：
-                <h1 for="totalAmount" class="col-sm-2 col-form-label"
-                    style="margin-left: 70%; font-size:50px;color:hsl(16.19deg 100% 62.2%)" name="totalAmount"
+    <div class="card-body mx-auto ">
+        <div class="record row d-f justify-content-center mt-3" style="">
+            <label for="totalAmount" class="col-sm-3 col-form-label">
+                <h3 style="margin-right: 50%; ">總金額</h3>
+                <h1 for=" totalAmount" class="col-sm-2 col-form-label"
+                    style="margin-left: 0%; font-size:50px; color:hsla(100, 75%, 28%, 0.993);" name="totalAmount"
                     type="number" min="0">
-                    {{totalAmount}}
+                    NT$&nbsp;{{totalAmount}}
                 </h1>
             </label>
         </div>
     </div>
 
     <!--總列表-->
-    <div class="row justify-content-center">
+    <div class="record row justify-content-center">
         <table class="table table-striped" style="width: 50%;">
             <thead>
                 <tr>
@@ -57,10 +58,12 @@
                     <td>{{this.date}}</td>
                     <td>{{this.amount}}</td>
                     <td>
-                        <div class="button-group">
-                            <a class="btn btn-info" href="/expense/{{this._id}}/edit">Edit</a>
+                        <div class="button-group ">
+                            <a class="btn btn-primary" href="/expense/{{this._id}}/edit"><i
+                                    class="fa-regular fa-pen-to-square"></i></a>
                             <form action="/expense/{{this._id}}?_method=DELETE" method="POST">
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-trash"
+                                        style="color: #ff0000;"></i></button>
                             </form>
                         </div>
                     </td>
