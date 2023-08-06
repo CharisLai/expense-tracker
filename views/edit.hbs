@@ -1,57 +1,63 @@
-<div class="container card col-7 mt-4">
-    <form action="/expense/{{ modifyRecord._id }}?_method=PUT" method="POST">
-        <div class="card-head row justify-content-center">
-            <span class="card-title col-auto">*required</span>
-            <h5 class="card-title col-7">編輯支出記錄</h5>
-        </div>
-        <div class="card-body row justify-content-center">
-            <label for="name" class="form-label col-auto">
-                <h5>名稱＊：</h5>
-            </label>
-            <div class="card-title col-8">
-                <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name"
-                    name="name" value="{{modifyRecord.name}}" required />
+<div class="container col-7">
+    <div class="card  mt-5">
+        <form action="/expense/{{ modifyRecord._id }}?_method=PUT" method="POST">
+            <div class="card-head row justify-content-center">
+                <span class="card-title col-auto">*required</span>
+                <h4 class="card-title col-7">編輯記錄</h4>
             </div>
-        </div>
-        <div class="card-body row justify-content-center">
-            <label for="date" class="form-label col-auto">
-                <h5>日期＊：</h5>
-            </label>
-            <div class="card-title col-8">
-                <input type="date" name="date" id="date" class="form-control" min="1900-01-01" max="2100-12-31"
-                    aria-label="date" aria-describedby="date" value="{{ modifyRecord.date }}" required />
+            <div class="card-body row justify-content-center">
+                <label for="name" class="form-label col-auto">
+                    <h5>名稱＊：</h5>
+                </label>
+                <div class="card-title col-8">
+                    <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name"
+                        name="name" value="{{modifyRecord.name}}" required />
+                </div>
             </div>
-        </div>
-        <div class="card-body row justify-content-center">
-            <label for="category" class="form-label col-auto">
-                <h5>類別＊：</h5>
-            </label>
-            <div class="col-8">
-                <select class="form-select justify-content-center" aria-label="categoryId" style="width: 100%;"
-                    id="category" name="categoryId">
-                    <option selected>請選擇類別</option>
-                    {{#each categories}}
-                    <option value="{{this._id}}" {{#match this.name ../categoryName }}{{/match}}>{{this.name}}
-                    </option>
-                    {{/each}}
-                </select>
+            <div class="card-body row justify-content-center">
+                <label for="date" class="form-label col-auto">
+                    <h5>日期＊：</h5>
+                </label>
+                <div class="card-title col-8">
+                    <input type="date" name="date" id="date" class="form-control" min="1900-01-01" max="2100-12-31"
+                        aria-label="date" aria-describedby="date" value="{{ modifyRecord.date }}" required />
+                </div>
             </div>
-        </div>
-        <div class="card-body row justify-content-center">
-            <label for="amount" class="form-label col-auto ">
-                <h5>金額＊：</h5>
-            </label>
-            <div class="card-title col-8">
-                <input type="number" min="1" id="amount" class="form-control" placeholder="amount" aria-label="amount"
-                    aria-describedby="amount" name="amount" value="{{modifyRecord.amount}}" required />
+            <div class="card-body row justify-content-center">
+                <label for="category" class="form-label col-auto">
+                    <h5>類別＊：</h5>
+                </label>
+                <div class="col-8">
+                    <select class="form-select justify-content-center" aria-label="categoryId" style="width: 100%;"
+                        id="category" name="categoryId">
+                        <option selected>請選擇類別</option>
+                        {{#each categories}}
+                        <option value="{{this._id}}" {{#match this.name ../categoryName }}{{/match}}>{{this.name}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="card-body row justify-content-center" style="align-items:center;">
-            <div class="col-auto"></div>
-            <div class="text-center col-6">
-                <button class="btn btn-outline-secondary " style="width:100%; align-items:center;"
-                    type="submit">Submit</button>
+            <div class="card-body row justify-content-center">
+                <label for="amount" class="form-label col-auto ">
+                    <h5>金額＊：</h5>
+                </label>
+                <div class="card-title col-8">
+                    <input type="number" min="1" id="amount" class="form-control" placeholder="amount"
+                        aria-label="amount" aria-describedby="amount" name="amount" value="{{modifyRecord.amount}}"
+                        required />
+                </div>
             </div>
-        </div>
-    </form>
+            <div class="card-body row justify-content-center" style="align-items:center;">
+                <div class="col-auto"> <a href="/">
+                        <button type="button" class="btn btn-outline-secondary">
+                            返回
+                        </button></a></div>
+                <div class="text-center col-6">
+                    <button class="btn btn-outline-primary " style="width:100%; align-items:center;"
+                        type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
