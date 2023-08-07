@@ -44,11 +44,6 @@ app.use((req, res, next) => {
 // router
 app.use(routes)
 
-app.get('/test', (req, res) => {
-    res.json({
-        message: 'test work!'
-    })
-})
 
 app.listen(PORT, () => {
     console.log(`App is running on http://localhost:${PORT}`)

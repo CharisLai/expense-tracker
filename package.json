@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "16.X"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
@@ -26,8 +29,7 @@
     "mongoose": "^5.13.20",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
-    "passport-local": "^1.0.0",
-    "vercel": "^31.2.2"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.3"
